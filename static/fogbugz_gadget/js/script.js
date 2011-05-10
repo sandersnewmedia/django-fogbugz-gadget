@@ -5,7 +5,6 @@ FogBugz.setup = function() {
         FogBugz.submit_ticket();
         $('.error').remove();
         $('#fogbugz_message').html('Submitting...'); 
-        $('#fogbugz_message').show(100); 
         return false;
     });
 }
@@ -42,7 +41,6 @@ FogBugz.submit_ticket = function() {
                     msg.html('Case submitted: ' + $(response).html());
                     break;
             }
-            msg.delay(4000).hide(100);
         },
         error: function(response) {
            msg.html('Ticket failed to submit.'); 

@@ -6,9 +6,9 @@ from urllib2 import HTTPError, URLError
 
 conf = {}
 
-class FogBugzError(Exception):
+class GadgetError(Exception):
     def __init__(self, msg):
-        self.msg = msg 
+        self.msg = 'FogBugz Gadget says: %s' % msg 
 
     def __str__(self):
         return repr(self.msg)
@@ -30,15 +30,15 @@ def _send(url):
     try:
         return pq(url=conf['api_root'] + url)
     except HTTPError, e:
-        raise FogBugzError('Error code: %s - check app settings' % e.code)
+        raise GadgetError('Error code: %s - check app settings' % e.code)
     except URLError, e:
-        raise FogBugzError('Failed to reach server: %s - check app settings' % e.reason)
+        raise GadgetError('Failed to reach server: %s - check app settings' % e.reason)
 
 def _logon():
     reply = _send('cmd=logon&email=' + conf['email'] + '&password=' + conf['password'])
 
     if reply('error'): 
-        raise FogBugzError(reply)
+        raise GadgetError(reply)
 
     return reply('token').html()
 
@@ -60,7 +60,7 @@ def get_priorities():
     reply = _send('token=' + token + '&cmd=listPriorities')
     
     if reply('error'):
-        raise FogBugzError(reply) 
+        raise GadgetError(reply) 
 
     choices, initial = [], None
 
@@ -104,7 +104,7 @@ def submit_ticket(data):
     case = reply('case').attr('ixBug')
 
     if reply('error'):
-        raise FogBugzError(reply)
+        raise GadgetError(reply)
 
     _logoff(token)
     return case

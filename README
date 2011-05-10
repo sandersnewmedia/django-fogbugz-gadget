@@ -1,0 +1,61 @@
+===========
+settings.py
+-----------
+
+INSTALLED_APPS = (
+   ...
+   'fogbugz_gadget'
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+   ...
+   'fogbugz_gadget.context_processors.forms',
+)
+
+# URL for submitting requests
+FOG_API_ROOT = 'https://example.fogbugz.com/api.asp?'
+
+FOG_PROJECT = 'Microsoft Windows'
+FOG_PRIMARY_CONTACT = 'Steve Balmer'
+
+# Submissions come from this user
+FOG_EMAIL = 'steve@example.com'
+FOG_PASSWORD = 'password'
+
+=======
+urls.py
+-------
+
+urlpatterns = patterns('',
+    ...
+    (r'^submit_bug$', 'fogbugz_gadget.views.submit_bug'),
+)
+
+====================
+sample_template.html
+--------------------
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        ...
+        <script src="{{ STATIC_URL }}testapp/js/jquery-1.6.min.js"></script>
+        <script src="{{ STATIC_URL }}fogbugz_gadget/js/script.js"></script>
+    </head>
+
+    <body>
+        ...
+        {% include "fogbugz_gadget/submit_bug.html" %}
+    </body>
+</html>
+
+===============
+ADDITIONAL INFO
+---------------
+The FogBugz Gadget uses Django's cache framework. For best performance, configure caching for your app.
+
+Check your JavaScript console when debugging. Errors returned from the FogBugz api will display there. 
+
+Error message are also emailed to site admins, so make sure that is configurd properly.
+
+To style the bug submission form, edit "fogbugz_gadget/static/fogbugz_gadget/css/style.css".
