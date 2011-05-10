@@ -26,6 +26,7 @@ def submit_bug(request):
         else:
             response.attr('type', 'invalid')
 
+            # include validation errors in response
             for field, errors in form.errors.items():
                 for error in errors:
                     response.append('<error field="%s">%s</error>' % (field, error))

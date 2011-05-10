@@ -9,5 +9,6 @@ setup(
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/fogbugz',
+    py_modules=['fogbugz'],
     license='MIT',
 )

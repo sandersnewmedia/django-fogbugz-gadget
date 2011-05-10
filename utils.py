@@ -1,14 +1,15 @@
 from django.conf import settings
 from django.core import exceptions
-from urllib2 import HTTPError, URLError
 from django.core.cache import cache
 from pyquery import PyQuery as pq
+from urllib2 import HTTPError, URLError
 
 conf = {}
 
 class FogBugzError(Exception):
     def __init__(self, msg):
         self.msg = msg 
+
     def __str__(self):
         return repr(self.msg)
 
@@ -29,9 +30,9 @@ def _send(url):
     try:
         return pq(url=conf['api_root'] + url)
     except HTTPError, e:
-        raise FogBugzError('FogBugz app: failed to reach server - check app settings')
+        raise FogBugzError('Error code: %s - check app settings' % e.code)
     except URLError, e:
-        raise FogBugzError('FogBugz app: server couldn\'t fulfill request - check app settings')
+        raise FogBugzError('Failed to reach server: %s - check app settings' % e.reason)
 
 def _logon():
     reply = _send('cmd=logon&email=' + conf['email'] + '&password=' + conf['password'])

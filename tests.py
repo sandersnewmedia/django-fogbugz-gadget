@@ -3,23 +3,15 @@ from django.core import exceptions
 import unittest
 import utils
 
-class TestFogBugzApp(unittest.TestCase):
+class TestExceptionHandling(unittest.TestCase):
     def setUp(self):
-        settings.FOG_API_ROOT = 'http://www.fake.com/fakeness?'
+
+        # these bogus values should cause errors 
+        settings.FOG_API_ROOT = 'http://1234.org'
         settings.FOG_EMAIL = 'fake@fake.com'
-        settings.FOG_PASSWORD = '1234'
-        settings.FOG_PROJECT = 'Fakeness'
-        settings.FOG_PRIMARY_CONTACT = 'John Smith'
 
+        # properly formatted test data
         self.cleaned_data = {'priority': u'3', 'message': u'TEST MESSAGE', 'title': u'TEST'}
-
-    def test_configure(self):
-        utils._configure()
-        #self.assertRaises(exceptions.ImproperlyConfigured, utils._configure)
-        pass
-
-    def test_logon(self):
-        self.assertRaises(utils.FogBugzError, utils._logon)
 
     def test_get_priorities(self):
         self.assertRaises(utils.FogBugzError, utils.get_priorities)
