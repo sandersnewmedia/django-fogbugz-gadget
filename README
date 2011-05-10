@@ -10,16 +10,16 @@ settings.py
 
 INSTALLED_APPS = (
    ...
-   'fogbugz_gadget'
+   'django_fogbugz_gadget'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
    ...
-   'fogbugz_gadget.context_processors.forms',
+   'django_fogbugz_gadget.context_processors.forms',
 )
 
 # URL for submitting requests
-FOG_API_ROOT = 'https://example.fogbugz.com/api.asp?'
+FOG_API_ROOT = 'https://example.django_fogbugz.com/api.asp?'
 
 FOG_PROJECT = 'Microsoft Windows'
 FOG_PRIMARY_CONTACT = 'Steve Balmer'
@@ -34,7 +34,7 @@ urls.py
 
 urlpatterns = patterns('',
     ...
-    (r'^submit_bug$', 'fogbugz_gadget.views.submit_bug'),
+    (r'^submit_bug$', 'django_fogbugz_gadget.views.submit_bug'),
 )
 
 ====================
@@ -45,14 +45,14 @@ sample_template.html
 <html>
     <head>
         ...
-        <link rel="stylesheet" href="{{ STATIC_URL }}fogbugz_gadget/css/style.css">
-        <script src="{{ STATIC_URL }}fogbugz_gadget/js/jquery-1.6.min.js"></script>
-        <script src="{{ STATIC_URL }}fogbugz_gadget/js/script.js"></script>
+        <link rel="stylesheet" href="{{ STATIC_URL }}django_fogbugz_gadget/css/style.css">
+        <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/jquery-1.6.min.js"></script>
+        <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/script.js"></script>
     </head>
 
     <body>
         ...
-        {% include "fogbugz_gadget/submit_bug.html" %}
+        {% include "django_fogbugz_gadget/submit_bug.html" %}
     </body>
 </html>
 
@@ -61,8 +61,8 @@ ADDITIONAL INFO
 ---------------
 Client's browser info is added automatically to all bug submissions.
 
-The FogBugz Gadget uses Django's cache framework. For best performance, configure your app's caching.
+The Django FogBugz Gadget uses Django's cache framework. For best performance, configure your app's caching.
 
 Error messages are emailed to site admins, so make sure that's configurd properly.
 
-To style the bug submission form, edit "fogbugz_gadget/static/fogbugz_gadget/css/style.css".
+To style the bug submission form, edit "django_fogbugz_gadget/static/django_fogbugz_gadget/css/style.css".
