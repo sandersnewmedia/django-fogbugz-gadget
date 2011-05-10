@@ -5,7 +5,7 @@ from distutils.core import setup
 setup(
     name='Django FogBugz Gadget',
     version='1.0',
-    description='A small Django app which submits ',
+    description='A small Django app which allows for bug submission to FogBugz.',
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/fogbugz',
