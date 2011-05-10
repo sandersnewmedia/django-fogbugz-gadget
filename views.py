@@ -12,15 +12,15 @@ def submit_bug(request):
             choices, initial = utils.get_priorities()
             form = TicketForm(choices, initial, request.POST) 
         except utils.GadgetError as e:
-            mail.mail_admins(e.msg)
+            mail.mail_admins('FogBugz Gadget Error', e.msg)
             form = TicketForm(data=request.POST) 
 
         if form.is_valid():
             try:
                 case = utils.submit_ticket(form.cleaned_data)
             except utils.GadgetError as e:
-                mail.mail_admins(e.msg)
-                raise RuntimeError(error.msg)
+                mail.mail_admins('FogBugz Gadget Error', e.msg)
+                raise RuntimeError(e.msg)
 
             response.attr('type', 'success').html(case)
         else:

@@ -8,7 +8,7 @@ conf = {}
 
 class GadgetError(Exception):
     def __init__(self, msg):
-        self.msg = 'FogBugz Gadget says: %s' % msg 
+        self.msg = 'FogBugz Gadget says... %s' % msg 
 
     def __str__(self):
         return repr(self.msg)
@@ -30,9 +30,9 @@ def _send(url):
     try:
         return pq(url=conf['api_root'] + url)
     except HTTPError, e:
-        raise GadgetError('Error code: %s - check app settings' % e.code)
+        raise GadgetError('Error code: %s (check app settings)' % e.code)
     except URLError, e:
-        raise GadgetError('Failed to reach server: %s - check app settings' % e.reason)
+        raise GadgetError('Failed to reach server: %s (check app settings)' % e.reason)
 
 def _logon():
     reply = _send('cmd=logon&email=' + conf['email'] + '&password=' + conf['password'])

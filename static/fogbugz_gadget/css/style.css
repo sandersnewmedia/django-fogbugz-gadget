@@ -4,7 +4,8 @@
 }
 
 #fogbugz_ticket_form span.error {
-    float: right;
+    color: #F00;
+    display: block;
 }
 
 #fogbugz_ticket_form li {
@@ -16,17 +17,18 @@
 #fogbugz_ticket_form label {
     margin: 0;
     padding: 0;
+    display: block;
 }
 
 #fogbugz_ticket_form textarea {
     margin: 0 0 5px 0;
     padding: 0;
-    width: 100%; 
+    width: 250px; 
     height: 100px;
 }
 
 #fogbugz_ticket_form li input {
-    width: 100%; 
+    width: 250px; 
     margin: 0 0 5px 0;
     padding: 0;
 }

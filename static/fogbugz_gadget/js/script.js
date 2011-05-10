@@ -1,15 +1,21 @@
-FogBugz = {}
+FogBugz_Gadget = {}
 
-FogBugz.setup = function() {
+FogBugz_Gadget.setup = function() {
+    FogBugz_Gadget.client_data = ' ';
+
+    $.each($.browser, function(k, v) {
+        FogBugz_Gadget.client_data += '[ ' + k + ': ' + v + ' ]';
+    });
+    
     $('#fogbugz_ticket_form').submit(function() {
-        FogBugz.submit_ticket();
+        FogBugz_Gadget.submit_ticket();
         $('.error').remove();
         $('#fogbugz_message').html('Submitting...'); 
         return false;
     });
 }
 
-FogBugz.submit_ticket = function() {
+FogBugz_Gadget.submit_ticket = function() {
     var fields = $('#fogbugz_ticket_form :input').filter(function() {
         if ($(this).attr('type') !== 'submit') {
             return true;
@@ -22,6 +28,10 @@ FogBugz.submit_ticket = function() {
             form_data[$(this).attr('name')] = $(this).val();
         }
     });
+
+    if (form_data['message']) {
+        form_data['message'] += FogBugz_Gadget.client_data;
+    }
 
     var msg = $('#fogbugz_message');
 
@@ -48,4 +58,4 @@ FogBugz.submit_ticket = function() {
     });
 }
 
-$(FogBugz.setup);
+$(FogBugz_Gadget.setup);

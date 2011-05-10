@@ -52,10 +52,8 @@ sample_template.html
 ===============
 ADDITIONAL INFO
 ---------------
-The FogBugz Gadget uses Django's cache framework. For best performance, configure caching for your app.
+The FogBugz Gadget uses Django's cache framework. For best performance, configure your app's caching.
 
-Check your JavaScript console when debugging. Errors returned from the FogBugz api will display there. 
-
-Error message are also emailed to site admins, so make sure that is configurd properly.
+Error messages are also emailed to site admins, so make sure that's configurd properly.
 
 To style the bug submission form, edit "fogbugz_gadget/static/fogbugz_gadget/css/style.css".
