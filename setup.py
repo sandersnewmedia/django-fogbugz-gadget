@@ -9,6 +9,15 @@ setup(
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/fogbugz',
-    py_modules=['fogbugz_gadget'],
+    packages=['fogbugz_gadget'],
+    requires=['Django 1.3','pyquery 0.6.1'],
     license='MIT',
+    classifiers=[
+        'Framework :: Django',
+        'License :: OSI Approved :: MIT License',
+        'Intended Audience :: Customer Service',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Bug Tracking',
+    ]
 )
+
