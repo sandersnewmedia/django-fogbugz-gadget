@@ -2,6 +2,7 @@
 
 from distutils.core import setup
 
+
 setup(
     name='Django FogBugz Gadget',
     version='1.0',
@@ -9,7 +10,15 @@ setup(
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/fogbugz',
-    packages=['fogbugz_gadget'],
+    packages=['django_fogbugz_gadget'],
+    package_data={
+        'django_fogbugz_gadget':[ 
+            'templates/django_fogbugz_gadget/submit_bug.html',
+            'static/django_fogbugz_gadget/css/style.css',
+            'static/django_fogbugz_gadget/js/jquery-1.6.min.js',
+            'static/django_fogbugz_gadget/js/script.js',
+        ]
+    },
     requires=['Django','pyquery'],
     license='MIT',
     classifiers=[
@@ -18,5 +27,5 @@ setup(
         'Intended Audience :: Customer Service',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Bug Tracking',
-    ]
+    ],
 )
