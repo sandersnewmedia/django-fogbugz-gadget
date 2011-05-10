@@ -2,7 +2,7 @@
   Overview
 ----------
 
-Django FogBogz Gadget is a small Django app which allows your users to submit bugs to FogBugz directly from your site.
+Django FogBogz Gadget is a small Django app which allows your users to submit cases to FogBugz directly from your site.
 
 ==============
   Installation
@@ -65,9 +65,6 @@ urlpatterns = patterns('',
 -----------------
 
 Client's browser info is added automatically to all bug submissions.
-
 The Django FogBugz Gadget uses Django's cache framework. For best performance, configure your app's caching.
-
 Error messages are emailed to site admins, so make sure that's configurd properly.
-
 To style the bug submission form, edit "django_fogbugz_gadget/static/django_fogbugz_gadget/css/style.css".
