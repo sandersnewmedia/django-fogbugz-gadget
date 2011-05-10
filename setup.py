@@ -10,7 +10,7 @@ setup(
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/fogbugz',
     packages=['fogbugz_gadget'],
-    requires=['Django 1.3','pyquery 0.6.1'],
+    requires=['Django','pyquery'],
     license='MIT',
     classifiers=[
         'Framework :: Django',
@@ -20,4 +20,3 @@ setup(
         'Topic :: Software Development :: Bug Tracking',
     ]
 )
-
