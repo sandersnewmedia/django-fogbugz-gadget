@@ -1,69 +1,64 @@
-==========
-  Overview
-----------
+[Django FogBugz Gadget](http://github.com/sandersnewmedia/django-fogbugz-gadget)
+================================================================================
 
+Overview
+--------
 Django FogBogz Gadget is a small Django app which allows your users to submit cases to FogBugz directly from your site.
 
-==============
-  Installation
---------------
+Installation
+------------
+    $ sudo python setup.py install
 
-$ sudo python setup.py install
+Usage
+-----
+Django Settings
 
-=======
-  Usage
--------
-
--- Django Settings
-
-INSTALLED_APPS = (
-   ...
-   'django_fogbugz_gadget'
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-   ...
-   'django_fogbugz_gadget.context_processors.forms',
-)
-
-# URL for submitting requests
-FOG_API_ROOT = 'https://example.django_fogbugz.com/api.asp?'
-
-FOG_PROJECT = 'Microsoft Windows'
-FOG_PRIMARY_CONTACT = 'Steve Balmer'
-
-# Submissions come from this user
-FOG_EMAIL = 'steve@example.com'
-FOG_PASSWORD = 'password'
-
--- Django URLs 
-
-urlpatterns = patterns('',
+    INSTALLED_APPS = (
     ...
-    (r'^submit_bug$', 'django_fogbugz_gadget.views.submit_bug'),
-)
+    'django_fogbugz_gadget'
+    )
 
--- Sample Template 
+    TEMPLATE_CONTEXT_PROCESSORS = (
+    ...
+    'django_fogbugz_gadget.context_processors.forms',
+    )
 
-<!DOCTYPE HTML>
-<html>
-    <head>
+    # URL for submitting requests
+    FOG_API_ROOT = 'https://example.django_fogbugz.com/api.asp?'
+
+    FOG_PROJECT = 'Microsoft Windows'
+    FOG_PRIMARY_CONTACT = 'Steve Balmer'
+
+    # Submissions come from this user
+    FOG_EMAIL = 'steve@example.com'
+    FOG_PASSWORD = 'password'
+
+Django URLs 
+
+    urlpatterns = patterns('',
         ...
-        <link rel="stylesheet" href="{{ STATIC_URL }}django_fogbugz_gadget/css/style.css">
-        <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/jquery-1.6.min.js"></script>
-        <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/script.js"></script>
-    </head>
+        (r'^submit_bug$', 'django_fogbugz_gadget.views.submit_bug'),
+    )
 
-    <body>
-        ...
-        {% include "django_fogbugz_gadget/submit_bug.html" %}
-    </body>
-</html>
+Sample Template 
 
-=================
-  ADDITIONAL INFO
------------------
+    <!DOCTYPE HTML>
+    <html>
+        <head>
+            ...
+            <link rel="stylesheet" href="{{ STATIC_URL }}django_fogbugz_gadget/css/style.css">
+            <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/jquery-1.6.min.js"></script>
+            <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/script.js"></script>
+        </head>
 
-Client's browser info is added automatically to all bug submissions.
-The Django FogBugz Gadget uses Django's cache framework. For best performance, configure your app's caching.
-Error messages are emailed to site admins, so make sure that's configurd properly.
+        <body>
+            ...
+            {% include "django_fogbugz_gadget/submit_bug.html" %}
+        </body>
+    </html>
+
+MORE INFO
+---------
+- Client's browser info is added automatically to all bug submissions
+- Django FogBugz Gadget uses Django's cache framework
+- Error messages are emailed to site admins

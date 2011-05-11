@@ -5,10 +5,11 @@ from distutils.core import setup
 setup(
     name='Django FogBugz Gadget',
     version='0.1',
-    description='A small Django app which allows your users to submit bugs to FogBugz.',
+    description='A small Django app which allows your users to submit cases to FogBugz directly from your site.',
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
-    url='http://github.com/sandersnewmedia/fogbugz',
+    url='http://github.com/sandersnewmedia/django-fogbugz-gadget',
+    download_url='https://github.com/sandersnewmedia/django-fogbugz-gadget/tarball/master',
     packages=['django_fogbugz_gadget'],
     package_data={
         'django_fogbugz_gadget':[ 
