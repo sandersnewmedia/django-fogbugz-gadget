@@ -9,7 +9,7 @@ setup(
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/django-fogbugz-gadget',
-    download_url='https://github.com/sandersnewmedia/django-fogbugz-gadget/tarball/master',
+    download_url='https://github.com/sandersnewmedia/django-fogbugz-gadget/django-fogbugz-gadget-0.1.tar.gz',
     packages=['django_fogbugz_gadget'],
     package_data={
         'django_fogbugz_gadget':[ 
