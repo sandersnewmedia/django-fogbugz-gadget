@@ -2,10 +2,9 @@
 
 from distutils.core import setup
 
-
 setup(
     name='Django FogBugz Gadget',
-    version='1.0',
+    version='0.1',
     description='A small Django app which allows your users to submit bugs to FogBugz.',
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
