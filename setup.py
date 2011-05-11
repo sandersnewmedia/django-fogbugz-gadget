@@ -19,7 +19,7 @@ setup(
             'static/django_fogbugz_gadget/js/script.js',
         ]
     },
-    requires=['Django','pyquery'],
+    requires=['Django (>=1.3)','pyquery (>=0.6.1)'],
     license='MIT',
     classifiers=[
         'Framework :: Django',
