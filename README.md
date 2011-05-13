@@ -7,10 +7,10 @@ Django FogBogz Gadget is a small Django app which allows your users to submit ca
 
 Installation
 ------------
-Release
     $ sudo eash_install django-fogbugz-gadget
 
 Or...
+
     $ git clone git://github.com/sandersnewmedia/django-fogbugz-gadget.git
     $ cd django-fogbugz-gadget
     $ sudo python setup.py install
