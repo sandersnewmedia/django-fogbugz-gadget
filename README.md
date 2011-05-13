@@ -47,7 +47,7 @@ Sample Template
         <head>
             ...
             <link rel="stylesheet" href="{{ STATIC_URL }}django_fogbugz_gadget/css/style.css">
-            <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/jquery-1.6.min.js"></script>
+            <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/jquery.js"></script>
             <script src="{{ STATIC_URL }}django_fogbugz_gadget/js/script.js"></script>
         </head>
 

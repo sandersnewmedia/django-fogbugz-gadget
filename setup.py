@@ -4,12 +4,12 @@ from distutils.core import setup
 
 setup(
     name='django-fogbugz-gadget',
-    version='0.1',
+    version='0.1.1',
     description='A small Django app which allows your users to submit cases to FogBugz directly from your site.',
     author='Sanders New Media',
     author_email='hello@sandersnewmedia.com',
     url='http://github.com/sandersnewmedia/django-fogbugz-gadget',
-    download_url='https://github.com/downloads/sandersnewmedia/django-fogbugz-gadget/django-fogbugz-gadget-0.1.tar.gz',
+    download_url='https://github.com/downloads/sandersnewmedia/django-fogbugz-gadget/django-fogbugz-gadget-0.1.1.tar.gz',
     packages=['django_fogbugz_gadget'],
     package_data={
         'django_fogbugz_gadget':[ 
