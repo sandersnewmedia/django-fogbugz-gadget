@@ -14,9 +14,8 @@ setup(
     package_data={
         'django_fogbugz_gadget':[ 
             'templates/django_fogbugz_gadget/submit_bug.html',
-            'static/django_fogbugz_gadget/css/style.css',
-            'static/django_fogbugz_gadget/js/jquery-1.6.min.js',
-            'static/django_fogbugz_gadget/js/script.js',
+            'static/django_fogbugz_gadget/css/*',
+            'static/django_fogbugz_gadget/js/*',
         ]
     },
     requires=['Django (>=1.3)','pyquery (>=0.6.1)'],
