@@ -10,7 +10,9 @@ Installation
 Release
     $ sudo eash_install django-fogbugz-gadget
 
-Cloned Repo
+Or...
+    $ git clone git://github.com/sandersnewmedia/django-fogbugz-gadget.git
+    $ cd django-fogbugz-gadget
     $ sudo python setup.py install
 
 Usage
