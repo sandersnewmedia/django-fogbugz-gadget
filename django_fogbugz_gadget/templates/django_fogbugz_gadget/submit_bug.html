@@ -1,4 +1,4 @@
-<div id="fogbugz_message"></div>
+<div id="fogbugz_message">Report a Problem</div>
 <form id="fogbugz_ticket_form" action="/submit_bug">{% csrf_token %}
     {{ ticket_form.as_ul }}
     <input type="submit" value="Submit" />
