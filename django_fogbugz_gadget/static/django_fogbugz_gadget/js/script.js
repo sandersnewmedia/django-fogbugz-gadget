@@ -1,11 +1,15 @@
 FogBugz_Gadget = {}
 
 FogBugz_Gadget.setup = function() {
-    FogBugz_Gadget.client_data = ' ';
+    var browser;
 
     $.each($.browser, function(k, v) {
-        FogBugz_Gadget.client_data += '\n\n' + k + ': ' + v;
-    });
+        if (v) {
+            browser = k;
+        }
+    }
+
+    FogBugz_Gadget.client_data = '\n\nBrowser:' + $browser + 'Version:' + $.browser.version;
     
     $('#fogbugz_ticket_form').submit(function() {
         FogBugz_Gadget.submit_ticket();
