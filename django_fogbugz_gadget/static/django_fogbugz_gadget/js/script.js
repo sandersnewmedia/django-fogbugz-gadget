@@ -4,7 +4,7 @@ FogBugz_Gadget.setup = function() {
     FogBugz_Gadget.client_data = ' ';
 
     $.each($.browser, function(k, v) {
-        FogBugz_Gadget.client_data += '<p>[ ' + k + ': ' + v + ' ]\r\n<br></p>';
+        FogBugz_Gadget.client_data += '\n[ ' + k + ': ' + v + ' ]';
     });
     
     $('#fogbugz_ticket_form').submit(function() {
