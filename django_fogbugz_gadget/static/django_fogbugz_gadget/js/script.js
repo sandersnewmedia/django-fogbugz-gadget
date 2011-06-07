@@ -3,10 +3,20 @@ FogBugz_Gadget = {}
 FogBugz_Gadget.setup = function() {
     var browser;
 
-    $.each($.browser, function(k, v) {
-        if (v) {
-            browser = k;
-        }
+    if ($.browser.safari) {
+        browser = 'Safari';
+    }
+    else if ($browser.mozilla) {
+        browser = 'Mozilla';
+    }
+    else if ($browser.msie) {
+        browser = 'MSIE';
+    }
+    else if ($browser.opera) {
+        browser = 'Opera';
+    }
+    else  {
+        browser = 'Unknown';
     }
 
     FogBugz_Gadget.client_data = '\n\nBrowser:' + browser + 'Version:' + $.browser.version;
