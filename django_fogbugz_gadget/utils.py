@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core import exceptions
 from django.core.cache import cache
 from pyquery import PyQuery as pq
-from urllib2 import HTTPError, URLError
+from urllib2 import HTTPError, URLError, quote
 
 conf = {}
 
@@ -98,7 +98,7 @@ def submit_ticket(data):
     }
 
     for k, v in ticket.items():
-        ticket_query += '&' + k + '=' + v.replace(' ', '%20')
+        ticket_query += '&' + quote(k) + '=' + quote(v)
 
     reply = _send(ticket_query)
     case = reply('case').attr('ixBug')
