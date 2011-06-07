@@ -9,7 +9,7 @@ FogBugz_Gadget.setup = function() {
         }
     }
 
-    FogBugz_Gadget.client_data = '\n\nBrowser:' + $browser + 'Version:' + $.browser.version;
+    FogBugz_Gadget.client_data = '\n\nBrowser:' + browser + 'Version:' + $.browser.version;
     
     $('#fogbugz_ticket_form').submit(function() {
         FogBugz_Gadget.submit_ticket();
