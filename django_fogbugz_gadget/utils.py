@@ -8,7 +8,7 @@ conf = {}
 
 class GadgetError(Exception):
     def __init__(self, msg):
-        self.msg = 'FogBugz Gadget says... %s' % msg 
+        self.msg = 'FogBugz Gadget says... %s' % msg
 
     def __str__(self):
         return repr(self.msg)
@@ -37,30 +37,35 @@ def _send(url):
 def _logon():
     reply = _send('cmd=logon&email=' + conf['email'] + '&password=' + conf['password'])
 
-    if reply('error'): 
+    if reply('error'):
         raise GadgetError(reply)
 
-    return reply('token').html()
+    token = reply('token').html()
+
+    if token is None:
+        raise GadgetError('No token provided, login unsuccessful')
+
+    return token
 
 def _logoff(token):
     _send('token=' + token + '&cmd=logoff')
 
 def get_priorities():
     """
-    Returns priority values for use in a choice field. 
+    Returns priority values for use in a choice field.
     Values are pulled from FogBugz if not found in cache.
     """
     if cache.get('priorities') is not None:
         return cache.get('priorities')
 
-    if not conf: 
+    if not conf:
         _configure()
 
     token = _logon()
     reply = _send('token=' + token + '&cmd=listPriorities')
-    
+
     if reply('error'):
-        raise GadgetError(reply) 
+        raise GadgetError(reply)
 
     choices, initial = [], None
 
@@ -87,7 +92,7 @@ def submit_ticket(data):
         _configure()
 
     token = _logon()
-    ticket_query = 'cmd=new&token=' + token 
+    ticket_query = 'cmd=new&token=' + token
 
     ticket = {
         'sProject': conf['project'],
