@@ -2,7 +2,9 @@ from django.conf import settings
 from django.core import exceptions
 from django.core.cache import cache
 from pyquery import PyQuery as pq
-from urllib2 import HTTPError, URLError, quote
+from urllib2 import HTTPError, URLError, Request, urlopen, quote
+from urllib import urlencode
+
 
 conf = {}
 
@@ -26,16 +28,23 @@ def _configure():
     except AttributeError:
         raise exceptions.ImproperlyConfigured
 
-def _send(url):
+def _send(query):
+    # for some reason we have to grab the XML doc manually before passing to pyquery;
+    # the token isn't grabbed otherwise
     try:
-        return pq(url=conf['api_root'] + url)
+        request = Request(conf['api_root'], urlencode(query.items()))
+        xml = pq(urlopen(request).read())
+        return xml
     except HTTPError, e:
         raise GadgetError('Error code: %s (check app settings)' % e.code)
     except URLError, e:
         raise GadgetError('Failed to reach server: %s (check app settings)' % e.reason)
 
 def _logon():
-    reply = _send('cmd=logon&email=' + conf['email'] + '&password=' + conf['password'])
+    reply = _send({
+        'cmd': 'logon',
+        'email': conf['email'],
+        'password': conf['password'] })
 
     if reply('error'):
         raise GadgetError(reply)
@@ -48,7 +57,9 @@ def _logon():
     return token
 
 def _logoff(token):
-    _send('token=' + token + '&cmd=logoff')
+    _send({
+        'token=': token,
+        'cmd': 'logoff' })
 
 def get_priorities():
     """
@@ -62,7 +73,9 @@ def get_priorities():
         _configure()
 
     token = _logon()
-    reply = _send('token=' + token + '&cmd=listPriorities')
+    reply = _send({
+        'token': token,
+        'cmd': 'listPriorities' })
 
     if reply('error'):
         raise GadgetError(reply)
@@ -92,20 +105,16 @@ def submit_ticket(data):
         _configure()
 
     token = _logon()
-    ticket_query = 'cmd=new&token=' + token
 
-    ticket = {
+    reply = _send({
+        'cmd': 'new',
+        'token': token,
         'sProject': conf['project'],
         'sPrimary': conf['primary_contact'],
         'sTitle': data['title'],
         'ixPriority': data['priority'],
-        'sEvent': data['message']
-    }
+        'sEvent': data['message'] })
 
-    for k, v in ticket.items():
-        ticket_query += '&' + quote(k) + '=' + quote(v)
-
-    reply = _send(ticket_query)
     case = reply('case').attr('ixBug')
 
     if reply('error'):
